@@ -1,0 +1,53 @@
+.card {
+  width: 300px;
+  height: 500px;
+  background: #fff;
+  border-radius: 2px;
+  margin: var(--spacer);
+  padding: var(--spacer);
+  box-shadow: var(--level1);
+  transition: var(--animation);
+  position: relative;
+}
+.card-showcase{
+  width: 300px;
+  height: auto;
+}
+.card-content{
+  text-align: center;
+}
+.card-overlay{
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+.card-stat{
+  background:dodgerblue;
+  position: absolute;
+  width:18px;
+  height: 18px;
+  padding:15px;
+  border-radius:50%;
+  font-size: 18px;
+  line-height: 18px;
+  text-align: center;
+  color: white;
+  box-shadow: var(--level1);
+}
+.cost{
+  top: 0;
+  left: 0;
+}
+.power{
+  bottom:0;
+  left: 0;
+  background: red;
+}
+.toughness{
+  bottom: 0;
+  right: 0;
+  color: #333;
+  background: yellow;
+}
