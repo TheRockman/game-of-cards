@@ -4,14 +4,23 @@ import { connect } from 'react-redux';
 
 import './header.css';
 
+const handleAuth = auth => {
+  switch (auth) {
+    case null:
+      return;
+    case false:
+      return <a href="/auth/google">Login with google</a>;
+    default:
+      return <a href="/api/logout">Logout {auth.name}</a>;
+  }
+};
+
 const Header = ({ auth }) => (
   <div>
     <nav className="main-header">
       <div>Game of cards</div>
       <div />
-      <div>
-        {auth ? <div>signed in as {auth.name}</div> : <a href="">Sign in</a>}
-      </div>
+      <div>{handleAuth(auth)}</div>
     </nav>
     <div className="header-spacer" />
   </div>
