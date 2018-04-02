@@ -2,7 +2,7 @@
   --animation: all 600ms cubic-bezier(.33,.11,.02,.99);
   --spacer: 1rem;
   --main: purple;
-  --secondary: goldenrod;
+  --secondary: dodgerblue;
   --highlight: ##c263c2;
 
   /*shadows*/
@@ -51,6 +51,17 @@ body{
   .flex {
     flex: 1 1 auto;
   }
+}
+
+.btn{
+  outline: none;
+  border:none;
+  background: var(--secondary);
+  color: white;
+  padding: 0.5rem var(--spacer);
+  min-width: 120px;
+  margin: 10px;
+  cursor: pointer;
 }
 
 /*Animation*/

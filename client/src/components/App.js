@@ -6,8 +6,9 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import Playground from './Playground';
 import Header from './header/Header';
+import LandingPage from './landing/Landing';
 
-const Landing = () => <h2>Landing</h2>;
+const Landing = () => <LandingPage />;
 const CreateDeck = () => <h2>CreateDeck</h2>;
 
 const App = () => {
