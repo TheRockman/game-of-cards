@@ -1,20 +1,29 @@
 .card {
-  width: 300px;
-  height: 500px;
+  width: 250px;
+  height: 350px;
   background: #fff;
   border-radius: 2px;
   margin: var(--spacer);
-  padding: var(--spacer);
   box-shadow: var(--level1);
   transition: var(--animation);
   position: relative;
 }
 .card-showcase{
-  width: 300px;
+  width: 100%;
   height: auto;
 }
 .card-content{
   text-align: center;
+}
+.card-title {
+    position: absolute;
+    top: 0;
+    z-index: 5;
+    left: 0;
+    padding: var(--spacer);
+    padding-left: 40px;
+    background: rgba(255,255,255, 0.5);
+    right: 0;
 }
 .card-overlay{
   position: absolute;
@@ -34,20 +43,21 @@
   line-height: 18px;
   text-align: center;
   color: white;
+  z-index: 10;
   box-shadow: var(--level1);
 }
 .cost{
-  top: 0;
-  left: 0;
+  top: -9px;
+  left: -9px;
 }
 .power{
-  bottom:0;
-  left: 0;
+  bottom:-9px;
+  left: -9px;
   background: red;
 }
 .toughness{
-  bottom: 0;
-  right: 0;
+  bottom: -9px;
+  right: -9px;
   color: #333;
   background: yellow;
 }

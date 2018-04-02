@@ -9,7 +9,7 @@ class Card extends Component {
       <div className="card">
         <img alt="card art" className="card-showcase" src={image}></img>
         <div className="card-content">
-          <h2>{name}</h2>
+          <b className="card-title">{name}</b>
           <b>{rules}</b>
           <br></br>
           <small><i>"{description}"</i></small>
