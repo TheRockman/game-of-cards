@@ -1,8 +1,11 @@
 import React from 'react';
+import { compose, lifecycle } from 'recompose';
 import { BrowserRouter, Route } from 'react-router-dom';
-import Header from './header/Header';
+import { connect } from 'react-redux';
 
+import * as actions from '../actions';
 import Playground from './Playground';
+import Header from './header/Header';
 
 // const Header = () => <h2>Header</h2>;
 const Landing = () => <h2>Landing</h2>;
@@ -24,4 +27,11 @@ const App = () => {
   );
 };
 
-export default App;
+export default compose(
+  connect(null, actions),
+  lifecycle({
+    componentDidMount() {
+      this.props.fetchUser();
+    },
+  }),
+)(App);
