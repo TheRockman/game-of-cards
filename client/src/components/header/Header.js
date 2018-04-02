@@ -1,29 +1,26 @@
-import React, { Component } from "react";
+import React from 'react';
+import { compose } from 'recompose';
+import { connect } from 'react-redux';
+
 import './header.css';
 
-class Header extends Component {
-  render () {
-    const user = this.props.user;
-    const isLoggedIn = user.isLoggedIn;
-    return (
-      <div>
-      <nav className="main-header">
+const Header = ({ auth }) => (
+  <div>
+    <nav className="main-header">
       <div>Game of cards</div>
-      <div></div>
+      <div />
       <div>
-      {isLoggedIn ? (
-        <div>
-        signed in as {user.userName}
-        </div>
-      ) : (
-        <a href="">Sign in</a>
-      )}
+        {auth ? <div>signed in as {auth.name}</div> : <a href="">Sign in</a>}
       </div>
-      </nav>
-      <div className="header-spacer"></div>
-      </div>
-    )
-  }
+    </nav>
+    <div className="header-spacer" />
+  </div>
+);
+
+function mapStateToProps({ auth }) {
+  return {
+    auth,
+  };
 }
 
-export default Header;
+export default compose(connect(mapStateToProps))(Header);
