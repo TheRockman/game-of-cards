@@ -8,7 +8,7 @@
     "npm": "5.0.3"
   },
   "scripts": {
-    "test": "exit 2"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/HermanDahlen/game-of-cards/issues"
   },
-  "homepage": "https://github.com/HermanDahlen/game-of-cards#readme"
+  "homepage": "https://github.com/HermanDahlen/game-of-cards#readme",
+  "devDependencies": {
+    "jest": "^22.4.3"
+  }
 }
