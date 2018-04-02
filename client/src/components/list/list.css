@@ -1,0 +1,35 @@
+.directional-list{
+  display: flex;
+  display: -ms-flexbox;
+  padding:0;
+  list-style: none;
+}
+
+.directional-list > li {
+  background: white;
+  box-shadow: var(--level1);
+}
+
+.horizontal{
+flex-direction: row;
+flex-wrap: wrap;
+}
+.horizontal > li{
+  flex-basis: 33%;
+}
+
+.vertical{
+  flex-direction: column;
+}
+.vertical > li{
+    flex-basis: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .directional-list{
+    flex-direction: row;
+  }
+  .directional-list > li {
+    flex-basis: 100%;
+  }
+}
