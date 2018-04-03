@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const authenticationRoutes = require('./routes/authentication');
+const cardRoutes = require('./routes/cards');
 const keys = require('./config/keys');
 require('./models/User');
 require('./services/passport');
@@ -21,6 +22,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 authenticationRoutes(app);
+cardRoutes(app);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
