@@ -7,9 +7,10 @@ import * as actions from '../actions';
 import Playground from './Playground';
 import Header from './header/Header';
 import LandingPage from './landing/Landing';
+import Deckmanager from './deckmanager/Deckmanager';
 
 const Landing = () => <LandingPage />;
-const CreateDeck = () => <h2>CreateDeck</h2>;
+const CreateDeck = () => <Deckmanager />;
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Header />
           <Route exact path="/" component={Landing} />
           <Route path="/playground" component={Playground} />
+          <Route path="/manage-deck" component={CreateDeck} />
         </div>
       </BrowserRouter>
     </div>
