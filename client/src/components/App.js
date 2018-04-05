@@ -20,7 +20,7 @@ const App = () => {
           <Header />
           <Route exact path="/" component={Landing} />
           <Route path="/playground" component={Playground} />
-          <Route path="/manage-deck" component={CreateDeck} />
+          <Route path="/create-deck" component={CreateDeck} />
         </div>
       </BrowserRouter>
     </div>
