@@ -80,3 +80,16 @@ animation-duration: 4s;
 background: url(http://lorempixum.com/1440/900/sports) no-repeat center center fixed;
 background-size: cover;
 */
+
+
+.wrap{
+  background: magenta;
+  padding: 1rem;
+}
+
+.drag{
+  padding: 1rem;
+  background: white;
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  margin:5px;
+}
