@@ -1,16 +1,9 @@
-import React, { Component } from "react";
+import React from 'react';
 import './deckmanager.css';
 import Draglist from '../list/Draglist';
 import Card from "../card/Card";
+import { compose, withState } from 'recompose';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-
-
-// fake data generator
-const getItems = count =>
-Array.from({ length: count }, (v, k) => k).map(k => ({
-  id: `item-${k}`,
-  content: `item ${k}`,
-}));
 
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
@@ -42,67 +35,54 @@ const getListStyle = isDraggingOver => ({
   width: 250,
 });
 
-class Cardpanel extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: getItems(10),
-    };
-    this.onDragEnd = this.onDragEnd.bind(this);
-  }
+// onDragEnd(result) {
+//   // dropped outside the list
+//   if (!result.destination) {
+//     return;
+//   }
+//
+//   const items = reorder(
+//     this.state.items,
+//     result.source.index,
+//     result.destination.index
+//   );
+//
+//   this.setState({
+//     items,
+//   });
+// }
 
-  onDragEnd(result) {
-    // dropped outside the list
-    if (!result.destination) {
-      return;
-    }
-
-    const items = reorder(
-      this.state.items,
-      result.source.index,
-      result.destination.index
-    );
-
-    this.setState({
-      items,
-    });
-  }
-  render () {
-    const { cards, position } = this.props;
-    return (
-      <div className={'card-panel' + ' ' + position}>
-      <Droppable droppableId="droppable">
-        {(provided, snapshot) => (
-          <div className="card-panel-content"
-            ref={provided.innerRef}
-            style={getListStyle(snapshot.isDraggingOver)}>
-            {this.state.items.map((item, index) => (
-              <Draggable key={item.id} draggableId={item.id} index={index}>
-                {(provided, snapshot) => (
-                  <div>
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      style={getItemStyle(
-                        snapshot.isDragging,
-                        provided.draggableProps.style
-                      )}
-                    >
-                      {item.content}
-                    </div>
-                    {provided.placeholder}
-                  </div>
-                )}
-              </Draggable>
-            ))}
-            {provided.placeholder}
-          </div>
-        )}
-      </Droppable>
+const Cardpanel = ({ cards, position, items }) => (
+  <div className={'card-panel' + ' ' + position}>
+  <Droppable droppableId="droppable">
+    {(provided, snapshot) => (
+      <div className="card-panel-content"
+        ref={provided.innerRef}
+        style={getListStyle(snapshot.isDraggingOver)}>
+        {items.map((item, index) => (
+          <Draggable key={item.id} draggableId={item.id} index={index}>
+            {(provided, snapshot) => (
+              <div>
+                <div
+                  ref={provided.innerRef}
+                  {...provided.draggableProps}
+                  {...provided.dragHandleProps}
+                  style={getItemStyle(
+                    snapshot.isDragging,
+                    provided.draggableProps.style
+                  )}>
+                  {item.content}
+                </div>
+                {provided.placeholder}
+              </div>
+            )}
+          </Draggable>
+        ))}
+        {provided.placeholder}
       </div>
-    )
-  }
-}
+    )}
+  </Droppable>
+  </div>
+);
 
-export default Cardpanel;
+export default compose(withState('items', 'setItems', [{id: 1, content:1}, {id: 2, content:2}]))(Cardpanel);
