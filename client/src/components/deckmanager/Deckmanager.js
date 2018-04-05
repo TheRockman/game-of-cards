@@ -1,13 +1,18 @@
 import React from 'react';
+import { DragDropContext } from 'react-beautiful-dnd';
+import { connect } from 'react-redux';
+import { compose } from 'recompose';
+
 import './deckmanager.css';
 import Cardpanel from './Cardpanel';
-import { DragDropContext } from 'react-beautiful-dnd';
 
-const Deckmanager = () => {
+const Deckmanager = ({ cards }) => {
+  console.log('cards', cards);
+
   return (
     <div>
       <DragDropContext>
-        <Cardpanel position="left" />
+        <Cardpanel cards={[]} position="left" />
         <div className="deck-manager-content">
           <form>
             <input
@@ -20,10 +25,16 @@ const Deckmanager = () => {
             <input className="btn" type="submit" value="Submit" />
           </form>
         </div>
-        <Cardpanel position="right" />
+        <Cardpanel cards={cards} position="right" />
       </DragDropContext>
     </div>
   );
 };
 
-export default Deckmanager;
+function mapStateToProps({ cards }) {
+  return {
+    cards,
+  };
+}
+
+export default compose(connect(mapStateToProps))(Deckmanager);

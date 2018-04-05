@@ -32,6 +32,7 @@ export default compose(
   lifecycle({
     componentDidMount() {
       this.props.fetchUser();
+      this.props.fetchCards();
     },
   }),
 )(App);
