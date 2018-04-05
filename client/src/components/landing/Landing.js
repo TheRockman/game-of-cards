@@ -12,10 +12,10 @@ const LandingPage = ({ auth }) => (
       {auth ? (
         <div>
           <Link to="/create-deck">
-            <button class="btn">Create deck</button>
+            <button className="btn">Create deck</button>
           </Link>
           <br />
-          <button class="btn">Play</button>
+          <button className="btn">Play</button>
         </div>
       ) : (
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>

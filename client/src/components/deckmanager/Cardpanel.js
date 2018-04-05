@@ -1,9 +1,12 @@
 import React from 'react';
-import './deckmanager.css';
-import Draglist from '../list/Draglist';
-import Card from "../card/Card";
-import { compose, withState } from 'recompose';
+import { map } from 'lodash';
+import { compose } from 'recompose';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+
+import './deckmanager.css';
+
+import Draglist from '../list/Draglist';
+import Card from '../card/Card';
 
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
@@ -35,54 +38,40 @@ const getListStyle = isDraggingOver => ({
   width: 250,
 });
 
-// onDragEnd(result) {
-//   // dropped outside the list
-//   if (!result.destination) {
-//     return;
-//   }
-//
-//   const items = reorder(
-//     this.state.items,
-//     result.source.index,
-//     result.destination.index
-//   );
-//
-//   this.setState({
-//     items,
-//   });
-// }
-
-const Cardpanel = ({ cards, position, items }) => (
+const Cardpanel = ({ cards, position }) => (
   <div className={'card-panel' + ' ' + position}>
-  <Droppable droppableId="droppable">
-    {(provided, snapshot) => (
-      <div className="card-panel-content"
-        ref={provided.innerRef}
-        style={getListStyle(snapshot.isDraggingOver)}>
-        {items.map((item, index) => (
-          <Draggable key={item.id} draggableId={item.id} index={index}>
-            {(provided, snapshot) => (
-              <div>
-                <div
-                  ref={provided.innerRef}
-                  {...provided.draggableProps}
-                  {...provided.dragHandleProps}
-                  style={getItemStyle(
-                    snapshot.isDragging,
-                    provided.draggableProps.style
-                  )}>
-                  {item.content}
+    <Droppable droppableId="droppable">
+      {(provided, snapshot) => (
+        <div
+          className="card-panel-content"
+          ref={provided.innerRef}
+          style={getListStyle(snapshot.isDraggingOver)}
+        >
+          {map(cards, (card, index) => (
+            <Draggable key={card.id} draggableId={card.id} index={index}>
+              {(provided, snapshot) => (
+                <div>
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                    style={getItemStyle(
+                      snapshot.isDragging,
+                      provided.draggableProps.style,
+                    )}
+                  >
+                    {card.name}
+                  </div>
+                  {provided.placeholder}
                 </div>
-                {provided.placeholder}
-              </div>
-            )}
-          </Draggable>
-        ))}
-        {provided.placeholder}
-      </div>
-    )}
-  </Droppable>
+              )}
+            </Draggable>
+          ))}
+          {provided.placeholder}
+        </div>
+      )}
+    </Droppable>
   </div>
 );
 
-export default compose(withState('items', 'setItems', [{id: 1, content:1}, {id: 2, content:2}]))(Cardpanel);
+export default compose()(Cardpanel);
